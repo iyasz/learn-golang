@@ -90,25 +90,25 @@ func main() {
 	fmt.Println()
 	
 	fmt.Println("\n=== SELECT STATEMENT ===")
-	ch1 := make(chan string)
-	ch2 := make(chan string)
+	ch3 := make(chan string)
+	ch4 := make(chan string)
 	
 	go func() {
 		time.Sleep(1 * time.Second)
-		ch1 <- "Message from ch1"
+		ch3 <- "Message from ch3"
 	}()
 	
 	go func() {
 		time.Sleep(500 * time.Millisecond)
-		ch2 <- "Message from ch2"
+		ch4 <- "Message from ch4"
 	}()
 	
 	for i := 0; i < 2; i++ {
 		select {
-		case msg1 := <-ch1:
-			fmt.Printf("Received from ch1: %s\n", msg1)
-		case msg2 := <-ch2:
-			fmt.Printf("Received from ch2: %s\n", msg2)
+		case msg1 := <-ch3:
+			fmt.Printf("Received from ch3: %s\n", msg1)
+		case msg2 := <-ch4:
+			fmt.Printf("Received from ch4: %s\n", msg2)
 		}
 	}
 	

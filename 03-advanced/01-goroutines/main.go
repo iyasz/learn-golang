@@ -68,6 +68,12 @@ func main() {
 	
 	wg.Wait()
 	fmt.Println("All WaitGroup tasks completed")
+
+	fmt.Println("\n=== SIMPLE GOROUTINE WITH WAITGROUP ===")
+	var wgCounter sync.WaitGroup
+	wgCounter.Add(1)
+	go counter(&wgCounter)
+	wgCounter.Wait()
 	
 	fmt.Println("\n=== WORKER POOL PATTERN ===")
 	jobs := make(chan int, 5)
